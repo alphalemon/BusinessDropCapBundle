@@ -1,0 +1,22 @@
+{
+  "name": "alphalemon/app-business-dropcap-bundle",
+  "description": "An AlphaLemon CMS app that adds a dropcap title content type and the related editor to manage it",
+  "keywords": ["alphalemon", "cms", "app"],
+  "homepage": "http://alphalemon.com",
+  "type": "symfony-bundle",
+  "license": "GPL 2.0",
+  "authors": [
+    {
+      "name": "AlphaLemon",
+      "email": "info@alphalemon.com"
+    }
+  ],
+  "require": {
+    "symfony/symfony":  ">=2.0.10,<dev-master"
+  },
+  "autoload": {
+    "psr-0": { "AlphaLemon\\Block": ""
+    }
+  },
+  "target-dir": "AlphaLemon/Block"
+}
