@@ -15,5 +15,5 @@
     "psr-0": { "AlphaLemon\\Block\\BusinessDropCapBundle": ""
     }
   },
-  "target-dir" : "BusinessDropCapBundle"
+  "target-dir" : "AlphaLemon/Block/BusinessDropCapBundle"
 }
