@@ -7,25 +7,25 @@
         <parameter key="businessdropcap_editor_settings" type="collection">
             <parameter key="html_editor">true</parameter>
         </parameter>
-        
-        <parameter key="businessdropcap.stylesheets" type="collection">
+
+        <parameter key="businessdropcap.external_stylesheets" type="collection">
             <parameter>@BusinessDropCapBundle/Resources/public/css/business-dropcap.css</parameter>
         </parameter>
-        
-        <parameter key="businessdropcap.stylesheets_cms" type="collection">
+
+        <parameter key="businessdropcap.external_stylesheets.cms" type="collection">
             <parameter>@BusinessDropCapBundle/Resources/public/css/business-dropcap-editor.css</parameter>
         </parameter>
-        
-        <parameter key="dropcapeditor.javascripts" type="collection">
+
+        <parameter key="dropcapeditor.external_javascripts" type="collection">
             <parameter>@BusinessMenuBundle/Resources/public/js/cufon-yui.js</parameter>
             <parameter>@BusinessMenuBundle/Resources/public/js/al-cufon-replace.js</parameter>
             <parameter>@BusinessMenuBundle/Resources/public/js/Swis721_Cn_BT_400.font.js</parameter>
             <parameter>@BusinessMenuBundle/Resources/public/js/Swis721_Cn_BT_700.font.js</parameter>
         </parameter>
-        
+
         <parameter key="dropcapeditor_rendering.class">AlphaLemon\Block\BusinessDropCapBundle\Core\Listener\RenderingEditorListener</parameter>
     </parameters>
-    
+
     <services>
         <service id="dropcapeditor_rendering.class" class="%dropcapeditor_rendering.class%">
             <tag name="alcms.event_listener" event="actions.block_editor_rendering" method="onBlockEditorRendering" priority="0" />
