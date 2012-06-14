@@ -23,7 +23,7 @@ use Symfony\Component\Form\FormBuilder;
 /**
  * Defines the languages form
  *
- * @author AlphaLemon <info@alphalemon.com>
+ * @author alphalemon <webmaster@alphalemon.com>
  */
 class DropCapType extends AbstractType
 {
