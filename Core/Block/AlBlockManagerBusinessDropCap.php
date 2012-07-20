@@ -38,18 +38,20 @@ class AlBlockManagerBusinessDropCap extends AlBlockManager
         return array('HtmlContent' => $defaultValue);
     }
     
-    public function getHtmlContent() {  
+    public function getHtmlContentForDeploy()
+    {  
         $value = $this->decodeJson($this->alBlock->getHtmlContent());
         
         return sprintf('<div class="business-dropcap"><h3><span class="dropcap">%s</span>%s<span>%s</span></h3></div>', $value["dropcap"], $value["title"], $value["subtitle"]);
     }
     
-    public function getHtmlContentCMSMode()
+    public function getHtmlContent()
     {
-        return $this->getHtmlContent() . '<script type="text/javascript">$(document).ready(function(){ $(\'.business-dropcap h3\').doCufon(); });</script>';
+        return $this->getHtmlContentForDeploy() . '<script type="text/javascript">$(document).ready(function(){ $(\'.business-dropcap h3\').doCufon(); });</script>';
     }
     
-    protected function edit(array $values) {
+    protected function edit(array $values)
+    {
         try
         {
             // Decodes the jquery serialized form
