@@ -10,15 +10,15 @@
  * file that was distributed with this source code.
  *
  * For extra documentation and help please visit http://www.alphalemon.com
- * 
+ *
  * @license    GPL LICENSE Version 2.0
- * 
+ *
  */
 
 namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Defines the languages form
@@ -34,8 +34,8 @@ class DropCapType extends AbstractType
     {
         $this->container = $container;
     }*/
-    
-    public function buildForm(FormBuilder $builder, array $options)
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('dropcap');
         $builder->add('title');
@@ -48,7 +48,7 @@ class DropCapType extends AbstractType
             'data_class' => 'AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap',
         );
     }
-    
+
     public function getName()
     {
         return 'dropcap';

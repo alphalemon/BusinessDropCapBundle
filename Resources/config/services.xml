@@ -34,6 +34,7 @@
 
         <service id="app_businessdropcap.block" class="%app_businessdropcap.block%">
             <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="validator" />
             <tag name="alphalemon_cms.blocks_factory.block" description="Business dropcap"  type="BusinessDropCap" group="business_theme_apps" />
         </service>
     </services>
