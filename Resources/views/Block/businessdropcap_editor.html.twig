@@ -1,48 +1,16 @@
 {#
-   This file is part of the BusinessSliderBundle and it is distributed
-   under the GPL LICENSE Version 2.0. To use this application you must leave
-   intact this copyright notice.
+ This file is part of the BusinessCarouselBundle and it is distributed
+ under the GPL LICENSE Version 2.0. To use this application you must leave
+ intact this copyright notice.
 
-   Copyright (c) AlphaLemon <webmaster@alphalemon.com>
+    Copyright (c) AlphaLemon <webmaster@alphalemon.com>
 
-   For the full copyright and license information, please view the LICENSE
-   file that was distributed with this source code. 
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
 
-   For extra documentation and help please visit http://www.alphalemon.com 
+ For extra documentation and help please visit http://www.alphalemon.com
 
-   @license    GPL LICENSE Version 2.0
+    @license    GPL LICENSE Version 2.0
 #}
 
-<div>
-    <form id="al_dropcap_form" action="#" method="post" {{ form_enctype(form) }}>
-        <table>
-            <tr>
-                <td>{{ form_label(form.dropcap, "Dropcap") }}</td>
-                <td>{{ form_errors(form.dropcap) }} {{ form_widget(form.dropcap, { 'attr': {'class' : 'input' }}) }}</td>
-            </tr>
-            <tr>
-                <td>{{ form_label(form.title, "Title") }}</td>
-                <td>{{ form_errors(form.title) }} {{ form_widget(form.title, { 'attr': {'class' : 'input' }}) }}</td>
-            </tr>
-            <tr>
-                <td>{{ form_label(form.subtitle, "Subtitle") }}</td>
-                <td>{{ form_errors(form.subtitle) }} {{ form_widget(form.subtitle, { 'attr': {'class' : 'input' }}) }}</td>
-            </tr>
-        </table>
-
-        {{ form_rest(form) }}
-    </form>
-</div>
-<div>
-    <input id="al_save_dropcap_block" type="submit" class="input panel_input button" />
-</div>
-<div id="al_dropcap_errors"></div>
-
-<script>
-    $('#al_save_dropcap_block').click(function()
-    {
-        $('#al_dropcap_form').EditBlock('HtmlContent', $('#al_dropcap_form').serialize());
-
-        return false;
-    });
-</script>
+{% extends "AlphaLemonCmsBundle:Block:Json/item.html.twig" %}

@@ -17,7 +17,7 @@
 
 namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor;
 
-use Symfony\Component\Form\AbstractType;
+use AlphaLemon\AlphaLemonCmsBundle\Core\Form\JsonBlock\JsonBlockType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -25,7 +25,7 @@ use Symfony\Component\Form\FormBuilderInterface;
  *
  * @author alphalemon <webmaster@alphalemon.com>
  */
-class DropCapType extends AbstractType
+class DropCapType extends JsonBlockType
 {
     /*
     private $container;
@@ -37,20 +37,10 @@ class DropCapType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        parent::buildForm($builder, $options);
+        
         $builder->add('dropcap');
         $builder->add('title');
         $builder->add('subtitle');
-    }
-
-    public function getDefaultOptions(array $options)
-    {
-        return array(
-            'data_class' => 'AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap',
-        );
-    }
-
-    public function getName()
-    {
-        return 'dropcap';
     }
 }

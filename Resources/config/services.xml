@@ -25,6 +25,7 @@
 
         <parameter key="app_businessdropcap.block">AlphaLemon\Block\BusinessDropCapBundle\Core\Block\AlBlockManagerBusinessDropCap</parameter>
         <parameter key="dropcapeditor_rendering.class">AlphaLemon\Block\BusinessDropCapBundle\Core\Listener\RenderingEditorListener</parameter>
+        <parameter key="businessdropcap.form.class">AlphaLemon\Block\BusinessDropCapBundle\Core\Form\BusinessDropCapType</parameter>
     </parameters>
 
     <services>
@@ -36,6 +37,9 @@
             <argument type="service" id="event_dispatcher" />
             <argument type="service" id="validator" />
             <tag name="alphalemon_cms.blocks_factory.block" description="Business dropcap"  type="BusinessDropCap" group="business_theme_apps" />
+        </service>
+        
+        <service id="businessdropcap.form" class="%businessdropcap.form.class%">
         </service>
     </services>
 </container>

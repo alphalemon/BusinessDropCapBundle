@@ -17,7 +17,7 @@
 
 namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Block;
 
-use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\AlBlockManager;
+use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBlock;
 use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap;use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Validator\AlParametersValidatorInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Repository\Factory\AlFactoryRepositoryInterface;
@@ -28,7 +28,7 @@ use Symfony\Component\Validator\ValidatorInterface;
  *
  * @author alphalemon
  */
-class AlBlockManagerBusinessDropCap extends AlBlockManager
+class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
 {
     private $sfValidator = null;
 
@@ -39,20 +39,24 @@ class AlBlockManagerBusinessDropCap extends AlBlockManager
         $this->sfValidator = $sfValidator;
     }
 
-    public function getDefaultValue() {
+    public function getDefaultValue()
+    {
+        $value =
+        '{
+            "0" : {
+                "dropcap" : "A",
+                "title" : "A Dropcap",
+                "subtitle" : "Title"
+            }
+        }';
 
-        $defaultValue = "{\n\t";
-        $defaultValue .= "\"dropcap\": \"A\",\n\t";
-        $defaultValue .= "\"title\": \"A Dropcap\",\n\t";
-        $defaultValue .= "\"subtitle\": \"Title!\"\n";
-        $defaultValue .= "}";
-
-        return array('HtmlContent' => $defaultValue);
+        return array('HtmlContent' => $value);
     }
 
     public function getHtmlContentForDeploy()
     {
-        $value = $this->decodeJson($this->alBlock->getHtmlContent());
+        $value = json_decode($this->alBlock->getHtmlContent(), true);
+        $value = $value[0];
 
         return sprintf('<div class="business-dropcap"><h3><span class="dropcap">%s</span>%s<span>%s</span></h3></div>', $value["dropcap"], $value["title"], $value["subtitle"]);
     }
@@ -60,48 +64,6 @@ class AlBlockManagerBusinessDropCap extends AlBlockManager
     public function getHtmlContent()
     {
         return $this->getHtmlContentForDeploy() . '<script type="text/javascript">$(document).ready(function(){ $(\'.business-dropcap h3\').doCufon(); });</script>';
-    }
-
-    protected function edit(array $values)
-    {
-        try
-        {
-            // Decodes the jquery serialized form
-            $unserializedData = array();
-            $serializedData = $values['HtmlContent'];
-            parse_str($serializedData, $unserializedData);
-            $content = $unserializedData["dropcap"];
-
-            // Builds and populates a DropCap object
-            $dropCap = new DropCap();
-            $dropCap->setDropcap($content["dropcap"]);
-            $dropCap->setTitle($content["title"]);
-            $dropCap->setSubtitle($content["subtitle"]);
-
-            // Validates the given data
-            $errors = array();
-            //$validator = $this->container->get('validator');
-            $formErrors = $this->sfValidator->validate($dropCap);
-            foreach($formErrors as $formError)
-            {
-                $errors[] = $formError->getMessage();
-            }
-
-            // An exception is thrown when the validator found errors
-            if(count($errors) > 0) {
-                throw new \RuntimeException("Some errors occoured during the editing operation:<br /><br />" . implode("<br />", $errors));
-            }
-
-            // encodes to json and saves
-            $value = json_encode($content);
-            $values['HtmlContent'] = $value;
-
-            return parent::edit($values);
-        }
-        catch(\InvalidArgumentException $ex)
-        {
-            throw $ex;
-        }
     }
 
     private function decodeJson($value) {

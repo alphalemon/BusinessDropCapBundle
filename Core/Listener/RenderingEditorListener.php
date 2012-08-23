@@ -38,13 +38,15 @@ class RenderingEditorListener
             if($alBlockManager instanceof AlBlockManagerBusinessDropCap)
             {
                 $content = json_decode($alBlockManager->get()->getHtmlContent(), true);
-                
+                $content = $content[0];
+                $content['id'] = 0;
+                /*
                 $dropCap = new DropCap();
                 $dropCap->setDropcap($content["dropcap"]);
                 $dropCap->setTitle($content["title"]);
-                $dropCap->setSubtitle($content["subtitle"]);
+                $dropCap->setSubtitle($content["subtitle"]);*/
                 
-                $form = $event->getContainer()->get('form.factory')->create(new DropCapType(), $dropCap);
+                $form = $event->getContainer()->get('form.factory')->create(new DropCapType(), $content);
                 
                 $request = $event->getRequest();
                 $template = sprintf('%sBundle:Block:%s_editor.html.twig', $alBlockManager->get()->getClassName(), strtolower($alBlockManager->get()->getClassName()));
