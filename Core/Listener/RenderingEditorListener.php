@@ -10,55 +10,27 @@
  * file that was distributed with this source code.
  *
  * For extra documentation and help please visit http://www.alphalemon.com
- * 
+ *
  * @license    GPL LICENSE Version 2.0
- * 
+ *
  */
 
-namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Listener; 
+namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Listener;
 
-use Symfony\Component\HttpFoundation\Request;
-use AlphaLemon\AlphaLemonCmsBundle\Core\Event\Actions\Block\BlockEditorRenderingEvent;
-use AlphaLemon\Block\BusinessDropCapBundle\Core\Block\AlBlockManagerBusinessDropCap;
-use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCapType;
-use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap;
+use AlphaLemon\AlphaLemonCmsBundle\Core\Listener\JsonBlock\RenderingItemEditorListener;
 
 /**
- * Manipulates the block's editor response when the editor has been rendered 
+ * Manipulates the block's editor response when the editor has been rendered
  *
  * @author alphalemon <webmaster@alphalemon.com>
  */
-class RenderingEditorListener 
+class RenderingEditorListener extends RenderingItemEditorListener
 {
-    public function onBlockEditorRendering(BlockEditorRenderingEvent $event)
+    protected function configure()
     {
-        try
-        {
-            $alBlockManager = $event->getAlBlockManager();            
-            if($alBlockManager instanceof AlBlockManagerBusinessDropCap)
-            {
-                $content = json_decode($alBlockManager->get()->getHtmlContent(), true);
-                $content = $content[0];
-                $content['id'] = 0;
-                /*
-                $dropCap = new DropCap();
-                $dropCap->setDropcap($content["dropcap"]);
-                $dropCap->setTitle($content["title"]);
-                $dropCap->setSubtitle($content["subtitle"]);*/
-                
-                $form = $event->getContainer()->get('form.factory')->create(new DropCapType(), $content);
-                
-                $request = $event->getRequest();
-                $template = sprintf('%sBundle:Block:%s_editor.html.twig', $alBlockManager->get()->getClassName(), strtolower($alBlockManager->get()->getClassName()));
-                $editor = $event->getContainer()->get('templating')->render($template, array("form" => $form->createView(),
-                                                                                               "language" => $request->get('language'),
-                                                                                               "page" => $request->get('page')));
-                $event->setEditor($editor);
-            }
-        }
-        catch(\Exception $ex)
-        {
-            throw $ex;
-        }
+        return array(
+            'blockClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Block\AlBlockManagerBusinessDropCap',
+            'formClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCapType',
+        );
     }
 }
