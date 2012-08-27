@@ -18,7 +18,8 @@
 namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBlock;
-use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap;use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Validator\AlParametersValidatorInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Repository\Factory\AlFactoryRepositoryInterface;
 use Symfony\Component\Validator\ValidatorInterface;
@@ -50,36 +51,21 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
             }
         }';
 
-        return array('HtmlContent' => $value);
+        return array(
+            'HtmlContent' => $value,
+            'InternalJavascript' => '$(\'.business-dropcap h3\').doCufon();',
+        );
     }
 
     public function getHtmlContentForDeploy()
     {
+        if (null === $this->alBlock) {
+           return ''; 
+        }
+                
         $value = json_decode($this->alBlock->getHtmlContent(), true);
         $value = $value[0];
 
         return sprintf('<div class="business-dropcap"><h3><span class="dropcap">%s</span>%s<span>%s</span></h3></div>', $value["dropcap"], $value["title"], $value["subtitle"]);
-    }
-
-    public function getHtmlContent()
-    {
-        return $this->getHtmlContentForDeploy() . '<script type="text/javascript">$(document).ready(function(){ $(\'.business-dropcap h3\').doCufon(); });</script>';
-    }
-
-    private function decodeJson($value) {
-        $value = json_decode($value, true);
-
-        if(!is_array($value))
-        {
-            throw new \InvalidArgumentException("The value you entered is not valid.");
-        }
-
-        $diff = array_diff_key(array("dropcap" => '', "title" => '', "subtitle" => ''), $value);
-        if(!empty($diff))
-        {
-            throw new \InvalidArgumentException("Some required parameters for the block are missing: " . implode(",", $diff) . ". Please fix the content.");
-        }
-
-        return $value;
     }
 }
