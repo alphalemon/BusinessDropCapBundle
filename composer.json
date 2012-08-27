@@ -5,15 +5,17 @@
   "homepage": "http://alphalemon.com",
   "type": "symfony-bundle",
   "license": "GPLv2",
-  "authors": [
-    {
-      "name": "AlphaLemon",
-      "email": "info@alphalemon.com"
-    }
-  ],
+  "authors": [{
+        "name": "AlphaLemon",
+        "email": "info@alphalemon.com"
+    }],
+  "require-dev": {
+        "alphalemon/alphalemon-cms-bundle": "dev-master"
+  },
   "autoload": {
     "psr-0": { "AlphaLemon\\Block\\BusinessDropCapBundle": ""
     }
   },
-  "target-dir" : "AlphaLemon/Block/BusinessDropCapBundle"
+  "target-dir" : "AlphaLemon/Block/BusinessDropCapBundle",
+  "minimum-stability": "dev"
 }
