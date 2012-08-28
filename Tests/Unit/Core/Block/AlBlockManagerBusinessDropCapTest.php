@@ -56,14 +56,14 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
 
     public function testAnEmptyStringIsReturnedWhenTheBlockHasNotBeenSet()
     {
-        $this->assertEquals('', $this->blockManager->getHtmlContentForDeploy());
+        $this->assertEquals('', $this->blockManager->getHtml());
     }
 
     public function testTheDropCapIsRendered()
     {
         $block = $this->setUpBlock();
         $this->blockManager->set($block);
-        $content = $this->blockManager->getHtmlContentForDeploy();
+        $content = $this->blockManager->getHtml();
         
         $expectedResult = '<div class="business-dropcap"><h3><span class="dropcap">A</span>A Dropcap<span>Title</span></h3></div>';
         $this->assertEquals($expectedResult, $content);
