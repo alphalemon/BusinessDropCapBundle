@@ -30,7 +30,7 @@ class RenderingEditorListener extends RenderingItemEditorListener
     {
         return array(
             'blockClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Block\AlBlockManagerBusinessDropCap',
-            'formClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCapType',
+            'formClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Form\BusinessDropCapType',
         );
     }
 }

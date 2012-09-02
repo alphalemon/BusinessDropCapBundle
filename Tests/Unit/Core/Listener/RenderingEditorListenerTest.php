@@ -43,7 +43,7 @@ class RenderingEditorListenerTest extends TestCase
     {
         $expectedResult = array(
             'blockClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Block\AlBlockManagerBusinessDropCap',
-            'formClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCapType',
+            'formClass' => '\AlphaLemon\Block\BusinessDropCapBundle\Core\Form\BusinessDropCapType',
         );
         $listener = new TestBusinessDropCapEditorListener();
         $this->assertEquals($expectedResult, $listener->configure());

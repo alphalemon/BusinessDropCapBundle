@@ -15,30 +15,22 @@
  *
  */
 
-namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor;
+namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Form;
 
 use AlphaLemon\AlphaLemonCmsBundle\Core\Form\JsonBlock\JsonBlockType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Defines the languages form
+ * Defines the business drop cap form
  *
  * @author alphalemon <webmaster@alphalemon.com>
  */
-class DropCapType extends JsonBlockType
+class BusinessDropCapType extends JsonBlockType
 {
-    /*
-    private $container;
-
-    public function __construct($container)
-    {
-        $this->container = $container;
-    }*/
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
-        
+
         $builder->add('dropcap');
         $builder->add('title');
         $builder->add('subtitle');
