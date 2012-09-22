@@ -1,0 +1,2 @@
+imports:
+    - { resource: "@BusinessDropCapBundle/Resources/config/app_block.xml" }
