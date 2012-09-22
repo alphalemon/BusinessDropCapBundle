@@ -19,7 +19,7 @@ namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBlock;
 use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use AlphaLemon\AlphaLemonCmsBundle\Core\EventsHandler\AlEventsHandlerInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Validator\AlParametersValidatorInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Repository\Factory\AlFactoryRepositoryInterface;
 use Symfony\Component\Validator\ValidatorInterface;
@@ -33,9 +33,9 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
 {
     private $sfValidator = null;
 
-    public function __construct(EventDispatcherInterface $dispatcher, ValidatorInterface $sfValidator, AlFactoryRepositoryInterface $factoryRepository = null, AlParametersValidatorInterface $validator = null)
+    public function __construct(AlEventsHandlerInterface $eventsHandler, ValidatorInterface $sfValidator, AlFactoryRepositoryInterface $factoryRepository = null, AlParametersValidatorInterface $validator = null)
     {
-        parent::__construct($dispatcher, $factoryRepository, $validator);
+        parent::__construct($eventsHandler, $factoryRepository, $validator);
 
         $this->sfValidator = $sfValidator;
     }
@@ -60,9 +60,9 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
     public function getHtml()
     {
         if (null === $this->alBlock) {
-           return ''; 
+           return '';
         }
-                
+
         $value = json_decode($this->alBlock->getHtmlContent(), true);
         $value = $value[0];
 

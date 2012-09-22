@@ -34,11 +34,11 @@
         </service>
 
         <service id="app_businessdropcap.block" class="%app_businessdropcap.block%">
-            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="alpha_lemon_cms.events_handler" />
             <argument type="service" id="validator" />
             <tag name="alphalemon_cms.blocks_factory.block" description="Business dropcap"  type="BusinessDropCap" group="business_theme_apps" />
         </service>
-        
+
         <service id="businessdropcap.form" class="%businessdropcap.form.class%">
         </service>
     </services>
