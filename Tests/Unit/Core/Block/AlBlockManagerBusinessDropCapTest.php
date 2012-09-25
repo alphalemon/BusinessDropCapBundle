@@ -33,8 +33,8 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
 
         $factoryRepository = $this->getMock('AlphaLemon\AlphaLemonCmsBundle\Core\Repository\Factory\AlFactoryRepositoryInterface');
         $validator = $this->getMock('Symfony\Component\Validator\ValidatorInterface');
-        $dispatcher = $this->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
-        $this->blockManager = new AlBlockManagerBusinessDropCap($dispatcher, $validator, $factoryRepository);
+        $eventsHandler = $this->getMock('AlphaLemon\AlphaLemonCmsBundle\Core\EventsHandler\AlEventsHandlerInterface');
+        $this->blockManager = new AlBlockManagerBusinessDropCap($eventsHandler, $validator, $factoryRepository);
     }
 
     public function testDefaultValue()
@@ -49,7 +49,7 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
         }';
         $expectedValue = array(
             'HtmlContent' => $value,
-            'InternalJavascript' => '$(\'.business-dropcap h3\').doCufon();',            
+            'InternalJavascript' => '$(\'.business-dropcap h3\').doCufon();',
         );
         $this->assertEquals($expectedValue, $this->blockManager->getDefaultValue());
     }
@@ -64,7 +64,7 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
         $block = $this->setUpBlock();
         $this->blockManager->set($block);
         $content = $this->blockManager->getHtml();
-        
+
         $expectedResult = '<div class="business-dropcap"><h3><span class="dropcap">A</span>A Dropcap<span>Title</span></h3></div>';
         $this->assertEquals($expectedResult, $content);
     }
