@@ -52,7 +52,7 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
         }';
 
         return array(
-            'HtmlContent' => $value,
+            'Content' => $value,
             'InternalJavascript' => '$(\'.business-dropcap h3\').doCufon();',
         );
     }
@@ -63,7 +63,7 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
            return '';
         }
 
-        $value = json_decode($this->alBlock->getHtmlContent(), true);
+        $value = json_decode($this->alBlock->getContent(), true);
         $value = $value[0];
 
         return sprintf('<div class="business-dropcap"><h3><span class="dropcap">%s</span>%s<span>%s</span></h3></div>', $value["dropcap"], $value["title"], $value["subtitle"]);

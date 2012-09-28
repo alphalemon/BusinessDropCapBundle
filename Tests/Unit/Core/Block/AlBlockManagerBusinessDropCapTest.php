@@ -48,7 +48,7 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
             }
         }';
         $expectedValue = array(
-            'HtmlContent' => $value,
+            'Content' => $value,
             'InternalJavascript' => '$(\'.business-dropcap h3\').doCufon();',
         );
         $this->assertEquals($expectedValue, $this->blockManager->getDefaultValue());
@@ -82,7 +82,7 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
 
         $block = $this->getMock('AlphaLemon\AlphaLemonCmsBundle\Model\AlBlock');
         $block->expects($this->once())
-            ->method('getHtmlContent')
+            ->method('getContent')
             ->will($this->returnValue($value));
 
         return $block;
