@@ -68,4 +68,9 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
 
         return sprintf('<div class="business-dropcap"><h3><span class="dropcap">%s</span>%s<span>%s</span></h3></div>', $value["dropcap"], $value["title"], $value["subtitle"]);
     }
+
+    protected function getEditorWidth()
+    {
+        return 250;
+    }
 }
