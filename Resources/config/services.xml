@@ -16,7 +16,7 @@
             <parameter>@BusinessDropCapBundle/Resources/public/css/business-dropcap-editor.css</parameter>
         </parameter>
 
-        <parameter key="dropcapeditor.external_javascripts" type="collection">
+        <parameter key="businessdropcap.external_javascripts" type="collection">
             <parameter>@BusinessMenuBundle/Resources/public/js/cufon-yui.js</parameter>
             <parameter>@BusinessMenuBundle/Resources/public/js/al-cufon-replace.js</parameter>
             <parameter>@BusinessMenuBundle/Resources/public/js/Swis721_Cn_BT_400.font.js</parameter>
