@@ -18,7 +18,6 @@
 namespace AlphaLemon\Block\BusinessDropCapBundle\Core\Block;
 
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Block\JsonBlock\AlBlockManagerJsonBlock;
-use AlphaLemon\Block\BusinessDropCapBundle\Core\Form\Editor\DropCap;
 use AlphaLemon\AlphaLemonCmsBundle\Core\EventsHandler\AlEventsHandlerInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Content\Validator\AlParametersValidatorInterface;
 use AlphaLemon\AlphaLemonCmsBundle\Core\Repository\Factory\AlFactoryRepositoryInterface;
@@ -64,13 +63,20 @@ class AlBlockManagerBusinessDropCap extends AlBlockManagerJsonBlock
         }
 
         $value = json_decode($this->alBlock->getContent(), true);
-        $value = $value[0];
+        $item = $value[0];
 
-        return sprintf('<div class="business-dropcap"><h3><span class="dropcap">%s</span>%s<span>%s</span></h3></div>', $value["dropcap"], $value["title"], $value["subtitle"]);
+        return array(
+            "RenderView" => array(
+                "view" => "BusinessDropCapBundle:DropCap:dropcap.html.twig",
+                "options" => array(
+                    "item" => $item,
+                )
+            )
+        );
     }
 
     protected function getEditorWidth()
     {
-        return 250;
+        return 280;
     }
 }
