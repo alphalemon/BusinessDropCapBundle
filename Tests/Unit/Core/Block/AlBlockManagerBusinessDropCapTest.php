@@ -64,8 +64,25 @@ class AlBlockManagerBusinessDropCapTest extends TestCase
         $block = $this->setUpBlock();
         $this->blockManager->set($block);
         $content = $this->blockManager->getHtml();
+        
+        $expectedResult = array
+        (
+            "RenderView" => array
+            (
+                "view" => "BusinessDropCapBundle:DropCap:dropcap.html.twig",
+                "options" => array
+                (
+                    "item" => array
+                    (
+                        "dropcap" => "A",
+                        "title" => "A Dropcap",
+                        "subtitle" => "Title",
+                    ),
+                ),
+            ),
+        );
 
-        $expectedResult = '<div class="business-dropcap"><h3><span class="dropcap">A</span>A Dropcap<span>Title</span></h3></div>';
+        
         $this->assertEquals($expectedResult, $content);
     }
 
